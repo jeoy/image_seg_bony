@@ -1,0 +1,555 @@
+.html,body,textarea{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height: 100%;
+	background-color: #efefef;
+	background-image: url("imageslogoGray.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 350px;
+}
+#logo img{
+	width: 65px;
+	margin-top: 30px;
+	margin-left: 35px;
+}
+p{
+	color: white;
+	font-family: FZYY;
+	font-size: 25px;
+}
+button{
+	color: white;
+	background-color: #358cc6;
+}
+.leftBar{
+	padding-left: 25px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 175px;
+	height:100%;
+	background-color: #0093dd;
+	z-index: 999
+	/*border: 1px solid black;*/
+
+}
+.topBar{
+	padding-top: 10px;
+	width: 100%;
+	position: fixed;
+	/*float: right;*/
+	margin-left: 200px;
+	top: 0;
+	background-color: #1fbba6;
+
+	z-index: 999;
+	height:130px;
+	/*border: 1px solid black;*/
+}
+
+.mask{
+	position: fixed;
+	top:140px;
+	left: 200px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index:998;
+
+}
+
+.mask p{
+	position: fixed;
+	margin-top: 30%;
+	width: 100%;
+	/*margin-left: 30%;*/
+	font-size: 45px;
+	color: white;
+	text-align: center;
+	/*vertical-align: middle;*/
+}
+#file{
+	margin-top: 20px;
+	/*background-color: #179f8d;*/
+}
+.content{
+	width: 1400px;
+	margin:0 auto 0 0;
+	position: relative;
+	height: 100%;
+	display: flex;
+}
+
+#category{
+	margin-left: 20px;
+	width:10%;
+	height: 100%;
+	/*margin-right: 20px;*/
+}
+.category{
+
+	width: 100px;
+	height:110px;
+	color: white;
+	font-size: 15px;
+	background-color: #179f8d;
+	text-align: center;
+}
+
+#toolsBar{
+	width: 100px;
+	height:110px;
+	color: white;
+	font-size: 15px;
+	background-color: #179f8d;
+	text-align: center;
+}
+.newCateInput{
+	color: white;
+	font-size: 14px;
+	background-color: #179f8d;
+	width: 80px;
+
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+color: #fff;
+}
+#markDiv{
+	margin-top: 5px;
+  width: 130px;
+	height: 50%;
+	margin-right: 30px;
+}
+#storeDiv{
+	flex:1;
+	height: 100%;
+	/*margin-right: 30px;*/
+}
+#bonyBox{
+  flex:2;
+  height: 100%;
+  margin-top: 10px;
+}
+#resultDiv{
+  flex:7;
+  /*background-color: red;*/
+  margin-left: -40px;
+  height: 100%;
+}
+#mark{
+	position: relative;
+	width: 450px;
+	height: 70px;
+	overflow: scroll;
+	background-color: #179f8d;
+	color: white;
+	font-size: 13px;
+
+}
+
+#store{
+	margin-left: 40px;
+	position: relative;
+	width: 450px;
+	height: 70px;
+	overflow: scroll;
+	white-space:nowrap;
+	color: white;
+	font-size: 12px;
+	background-color: #179f8d;
+
+}
+
+#start{
+	margin-left: 50px;
+}
+#clearAll{
+	margin-left: 200px;
+}
+
+.mousePosition{
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 150px;
+	height: 50px;
+	background-color: rgba(248,212,13,0.5);
+	color: white;
+	/*padding-left: 10px;*/
+}
+#preview{
+	position: absolute;
+	left: 200px;
+	top: 140px;
+
+}
+
+#previewMask{
+  position: absolute;
+  left: 200px;
+	top: 140px;
+
+  width:  500px;
+  height: 500px;
+  background-color: red;
+  opacity: 0;
+  z-index: -1;
+}
+
+#myCanvas{
+	left: 200px;
+	/*width: 3000px;*/
+	/*height: 2500px;*/
+	position: absolute;
+	top: 140px;
+}
+
+
+#fileListInput{
+	position: relative;
+	border: none;
+	width: 150px;
+	height: 350px;
+	overflow: scroll;
+	color: white;
+	background-color: #057fbc;
+  z-index: 1001;
+}
+
+textarea::-webkit-input-placeholder {
+	color: #88cef1;
+}
+
+#fileList select{
+	position: relative;
+	color: white;
+	width: 150px;
+	height: 350px;
+	overflow: scroll;
+	display: none;
+	background-color: #358cc6;
+  z-index: 1001;
+}
+#fileList option{
+	height: 25px;
+	padding-top: 10px;
+	font-size: 13px;
+	/*vertical-align: middle;*/
+	/*text-align: center;*/
+	border: 0.5px solid rgba(200,200,200,0.5) ;
+}
+
+#preImg{
+
+}
+.btDisabled{
+	cursor: not-allowed;
+	pointer-events:none;
+}
+#nextImg{
+
+}
+#genFileList{
+	margin-top: -10px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+#auto{
+	margin-left: 50px;
+	color: white;
+	background-color: red;
+}
+.checkboxThree p{
+	margin-top: 24px;
+	font-size: 15px;
+	width: 150px;
+	margin-left: 14px;
+}
+.point{
+	/*border-radius: 50px;*/
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	display: none;
+}
+.rectangle{
+	border-radius: 0px;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border: rgba(14,255,7,1) 3px solid;
+	/*display: none;*/
+}
+
+.listEven{
+	background-color: red;
+}
+.listOdd{
+	background-color: green;
+}
+
+.dow{display:block;width:102px;height:42px; line-height:42px; text-align:center;
+	  vertical-align: bottom;
+	  border-radius: 2px;
+	 font-family:FZYY; font-weight:bold; font-size:14px; background:#e9c814;color:#fff; text-decoration:none;   cursor:pointer;
+	  transition: background-color 0.7s;
+  -moz-transition: background-color   0.7s; /* Firefox 4 */
+  -webkit-transition:background-color  0.7s; /* Safari and Chrome */
+  -o-transition:background-color 0.7s;  /* Opera */}
+
+
+
+.dowLit{display:inline-block;width:73px;height:26px; line-height:26px; text-align:center;
+	  vertical-align: bottom;
+
+	  margin-top: 5px;
+	  border-radius: 2px;
+	 font-family:FZYY; font-weight:bold; font-size:12px; background:#e9c814;color:#fff; text-decoration:none;   cursor:pointer;
+	  transition: background-color 0.7s;
+  -moz-transition: background-color   0.7s; /* Firefox 4 */
+  -webkit-transition:background-color  0.7s; /* Safari and Chrome */
+  -o-transition:background-color 0.7s;  /* Opera */}
+
+
+.dowLit2{display:inline-block;width:102px;height:42px; line-height:42px; text-align:center;
+	  vertical-align: bottom;
+	  margin-left: 0px;
+	  margin-top: 0px;
+    margin-bottom: 13px;
+	  border-radius: 2px;
+	 font-family:FZYY; font-weight:bold; font-size:15px;
+	 background:#e9c814;color:#fff; text-decoration:none;   cursor:pointer;
+  transition: background-color 0.7s;
+  -moz-transition: background-color   0.7s; /* Firefox 4 */
+  -webkit-transition:background-color  0.7s; /* Safari and Chrome */
+  -o-transition:background-color 0.7s;  /* Opera */
+}
+
+.dowSLit{display:inline-block;width:22px;height:22px; line-height:22px; text-align:center;
+	  vertical-align: bottom;
+	  margin-left: 5px;
+	  margin-top: 5px;
+	  border-radius: 2px;
+	 font-family:FZYY; font-weight:bold; font-size:15px;
+	 background:#e9c814;color:#fff; text-decoration:none;   cursor:pointer;
+
+  transition: background-color 0.7s;
+  -moz-transition: background-color   0.7s; /* Firefox 4 */
+  -webkit-transition:background-color  0.7s; /* Safari and Chrome */
+  -o-transition:background-color 0.7s;  /* Opera */
+}
+.dow:hover,
+.dowLit:hover,
+.dowLit2:hover,
+.dowSLit:hover{background:#fbd91f;}
+.dow:active,
+.dowLit:active,
+.dowSLit:active,
+.dowLit2:active{background:#0d79d5;}
+
+.markDot{
+  position: absolute;
+  /*top:500px;
+  left: 800px;*/
+  width: 10px;
+  height: 10px;
+  background-color: #2a92fc;
+  border-radius: 100%;
+  z-index: 998;
+  cursor: pointer;
+}
+
+/*input[type=checkbox]{visibility:hidden;}  .checkboxThree{width: 120px; height:40px;background:#333;margin:20px 25px;border-radius:50px;position:relative;margin-left: 15px;}.checkboxThree:before{content:'On';position:absolute;top:12px;left:13px;height:2px;color:#1fbba6;font-size:16px;}.checkboxThree:after{content:'Off';position:absolute;top:12px;left:84px;height:2px;color:#ddd;font-size:16px;}.checkboxThree label{display:block;width:52px;height:22px;border-radius:50px;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;transition:all .5s ease;cursor:pointer;position:absolute;top:9px;z-index:1;left:12px;background:#ddd;}.checkboxThree input[type=checkbox]:checked+label{left:60px;background:#1fbba6;}*/
+@font-face
+{
+font-family: FZYY;
+src: url('font/fzyy.TTF'); /* IE9+ */
+}
+
+
+.dowebok li { display: inline-block;
+	margin: 10px 20px 0 0px;
+  /*width: 80px;*/
+  width: 150px;
+  display: block;
+	}
+input.labelauty + label {width: 100px; font: 13px "Microsoft Yahei";}
+
+
+a.disabled {
+    pointer-events: none;
+    background-color: #cab857;
+    color:#ceccc5;
+}
+
+ul.rightMenu {
+  list-style: none;
+  position: absolute;
+  background-color: #1fbba6;
+  border: 1px solid #fff;
+  z-index: 999;
+  border-radius: 3px;
+}
+
+ul.rightMenu li{
+  width: 70px;
+  margin-left: -40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color:#fff;
+  padding-left: 10px;
+}
+
+ul.rightMenu li:hover{
+ background-color: #2fe4cc;
+}
+ul.rightMenu > li:first-child{
+  padding:5px;
+  font-size: 18px;
+    background-color: #2a92fc;
+  cursor: default;
+}
+
+.bonyBear {
+  position: absolute;
+  top:140px;
+  left: 200px;
+  width: 200px;
+  z-index: 1;
+}
+.nose{
+  position: absolute;
+  top:  240px;
+  left: 298px;
+}
+.right_eye{
+  position: absolute;
+  top:  230px;
+  left: 260px;
+}
+.left_eye{
+  position: absolute;
+  left: 335px;
+  top:  230px;
+}
+.right_ear{
+  position: absolute;
+  top:  180px;
+  left: 221px;
+
+}
+.left_ear{
+  position: absolute;
+  top:  180px;
+  left: 376px;
+
+}
+.right_shoulder{
+  position: absolute;
+  top: 287px;
+  left: 250px;
+}
+.left_shoulder{
+  position: absolute;
+  top: 287px;
+  left: 348px;
+}
+.right_elbow{
+  position: absolute;
+  left: 237px;
+  top:  313px;
+
+}
+.left_elbow{
+  position: absolute;
+  top:  313px;
+  left: 360px;
+
+}
+.right_wrist{
+  position: absolute;
+  top:  335px;
+  left: 232px;
+
+}
+.left_wrist{
+  position: absolute;
+  top:  335px;
+  left: 365px;
+
+}
+.right_hip{
+  position: absolute;
+  top:  354px;
+  left: 275px;
+
+}
+.left_hip{
+  position: absolute;
+  top:  354px;
+  left: 326px;
+
+}
+.right_knee{
+  position: absolute;
+  top:  378px;
+    left: 260px;
+}
+.left_knee{
+  position: absolute;
+  top:  378px;
+  left: 335px;
+
+}
+.right_ankle{
+  position: absolute;
+  top:  394px;
+  left: 260px;
+}
+.left_ankle{
+  position: absolute;
+  top:  394px;
+  left: 335px;
+}
+
+.bonybt{
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+.modeChoice {
+  position: absolute;
+  left:460px;
+  top:-5px;
+  color:white;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+#resultDiv textarea{
+  width: 400px;
+  height:120px;
+  background-color: #179f8d;
+  color: white;
+  font-size: 15px;
+}
+
+.cube {
+  width: 60px;
+  margin-right: 2px;
+}
+
+#showBear:checked{
+  background-color: #179f8d;
+}
+
+#clearResult{
+  margin-top: 15px;
+  width:40px;
+  /*padding: 5px;*/
+  height:100px;
+}
