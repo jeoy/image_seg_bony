@@ -151,6 +151,8 @@ $(function(){
   var rightList = ['隐藏','可见','被遮挡']
   var currMaskIndex = 0;
   var dotNameArr = ['nose', 'right_eye', 'left_eye', 'right_ear', 'left_ear', 'right_shoulder', 'left_shoulder', 'right_elbow', 'left_elbow', 'right_wrist', 'left_wrist', 'right_hip', 'left_hip', 'right_knee', 'left_knee', 'right_ankle', 'left_ankle']
+  var dotNameArrShort = ['nose', 'R_eye', 'L_eye', 'R_ear', 'L_ear', 'R_shoulder', 'L_shoulder', 'R_elbow', 'L_elbow', 'R_wrist', 'L_wrist', 'R_hip', 'L_hip', 'R_knee', 'L_knee', 'R_ankle', 'L_ankle']
+
   $(':input').labelauty();
   $('#submit').removeClass("disabled");
   $('.bonybt').addClass("disabled");
@@ -198,7 +200,7 @@ $(function(){
     }
 
     for (var i = 0; i < dotNameArr.length; i++) {
-      let newDot = $('<div class="markDot ' + dotNameArr[i] +'" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArr[i]+'</div></div>')
+      let newDot = $('<div class="markDot ' + dotNameArr[i] +'" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArrShort[i]+'</div></div>')
       $("body").prepend(newDot)
     }
 
