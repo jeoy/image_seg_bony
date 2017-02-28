@@ -11,6 +11,7 @@ html,body{
 	background-size: 350px;
 }
 #logo img{
+	user-select:none;
 	width: 65px;
 	margin-top: 30px;
 	margin-left: 35px;
@@ -35,6 +36,9 @@ button{
 	z-index: 999
 	/*border: 1px solid black;*/
 
+}
+.leftBar p {
+	user-select:none;
 }
 .topBar{
 	padding-top: 10px;
@@ -358,11 +362,16 @@ textarea::-webkit-input-placeholder {
   left: 800px;*/
   width: 10px;
   height: 10px;
-  background-color: #2a92fc;
+  background-color: #000;
   border-radius: 100%;
   z-index: 998;
   cursor: pointer;
 }
+
+/*.markDot p{
+
+ font-size: 18px;
+}*/
 
 /*input[type=checkbox]{visibility:hidden;}  .checkboxThree{width: 120px; height:40px;background:#333;margin:20px 25px;border-radius:50px;position:relative;margin-left: 15px;}.checkboxThree:before{content:'On';position:absolute;top:12px;left:13px;height:2px;color:#1fbba6;font-size:16px;}.checkboxThree:after{content:'Off';position:absolute;top:12px;left:84px;height:2px;color:#ddd;font-size:16px;}.checkboxThree label{display:block;width:52px;height:22px;border-radius:50px;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;-ms-transition:all .5s ease;transition:all .5s ease;cursor:pointer;position:absolute;top:9px;z-index:1;left:12px;background:#ddd;}.checkboxThree input[type=checkbox]:checked+label{left:60px;background:#1fbba6;}*/
 @font-face
@@ -552,4 +561,12 @@ ul.rightMenu > li:first-child{
   width:40px;
   /*padding: 5px;*/
   height:100px;
+}
+
+.innerText{
+	user-select:none;
+	margin-top: -15px;
+	color:white;
+	cursor: default;
+	z-index: -995;
 }
