@@ -150,8 +150,8 @@ $(function(){
 
   var rightList = ['隐藏','可见','被遮挡']
   var currMaskIndex = 0;
-  var dotNameArr = ['nose', 'right_eye', 'left_eye', 'right_ear', 'left_ear', 'right_shoulder', 'left_shoulder', 'right_elbow', 'left_elbow', 'right_wrist', 'left_wrist', 'right_hip', 'left_hip', 'right_knee', 'left_knee', 'right_ankle', 'left_ankle']
-  var dotNameArrShort = ['nose', 'R_eye', 'L_eye', 'R_ear', 'L_ear', 'R_shoulder', 'L_shoulder', 'R_elbow', 'L_elbow', 'R_wrist', 'L_wrist', 'R_hip', 'L_hip', 'R_knee', 'L_knee', 'R_ankle', 'L_ankle']
+  var dotNameArr = ['nose', 'left_eye', 'right_eye', 'left_ear', 'right_ear', 'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_hip', 'right_hip', 'left_knee', 'right_knee', 'left_ankle', 'right_ankle']
+  var dotNameArrShort = ['nose', 'L_eye', 'R_eye', 'L_ear', 'R_ear', 'L_shoulder', 'R_shoulder', 'L_elbow', 'R_elbow', 'L_wrist', 'R_wrist', 'L_hip', 'R_hip', 'L_knee', 'R_knee', 'L_ankle', 'R_ankle']
 
   $(':input').labelauty();
   $('#submit').removeClass("disabled");
@@ -190,6 +190,8 @@ $(function(){
   })
 
   $('#addNewDots').click(function(){
+    firstDragger = [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]
+
     $(this).addClass('disabled')
     if (typeof resultArr[resultArr.length-1] === 'object'){
       resultArr[resultArr.length-1].keypoints = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
@@ -224,13 +226,13 @@ $(function(){
       resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][2] = $(this).index()-1
 
       if($(this).index()-1 === 0){   //选择隐藏
-        currentDot.css('backgroundColor','#000')
+        currentDot.css('backgroundColor','#ff5e5e')
         resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][0] = 0
         resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][1] = 0
       } else if($(this).index()-1 === 2){  // 选择遮挡
-        currentDot.css('backgroundColor','#1fbba6')
+        currentDot.css('backgroundColor','#eef31f')
       } else if($(this).index()-1 === 1){  //   可见
-        currentDot.css('backgroundColor','#2a92fc')
+        currentDot.css('backgroundColor','#41ea2f')
       }
     } else {
       alert('未知错误')
@@ -295,6 +297,7 @@ $(function(){
     isInnerText = true
     console.log('inner click')
   })
+  var firstDragger = [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]
   $('body').on("mousedown",'.markDot',function(e){
     // $(this).css("left",e.pageX-5)
     // $(this).css("top",e.pageY-5)
@@ -309,6 +312,12 @@ $(function(){
 
       dotMove = true
       console.log('left click')
+      if (firstDragger[dotNameArr.indexOf(GetDotName(currentDot))]){
+        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][2] = 1;
+        currentDot.css('backgroundColor','#41ea2f')
+        firstDragger[dotNameArr.indexOf(GetDotName(currentDot))] = false
+      }
+
     } else if (e.button==2){      // 调出右键菜单
       $('.rightMenu').remove()
       // console.log($(this))
