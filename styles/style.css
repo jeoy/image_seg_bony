@@ -85,7 +85,7 @@ button{
 	margin:0 auto 0 0;
 	position: relative;
 	height: 100%;
-	display: flex;
+	display: block;
 }
 
 #category{
@@ -137,7 +137,7 @@ color: #fff;
 #bonyBox{
   flex:2;
   height: 100%;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 #resultDiv{
 	user-select: none;
@@ -272,6 +272,9 @@ textarea::-webkit-input-placeholder {
 	color: white;
 	background-color: red;
 }
+.checkboxThree {
+	padding-bottom: 2px;
+}
 .checkboxThree p{
 	margin-top: 24px;
 	font-size: 15px;
@@ -400,7 +403,7 @@ src: url('font/fzyy.TTF'); /* IE9+ */
 	margin: 10px 20px 0 0px;
   /*width: 80px;*/
   width: 150px;
-  display: block;
+  display: none;
 	}
 input.labelauty + label {width: 100px; font: 13px "Microsoft Yahei";}
 
@@ -580,10 +583,12 @@ ul.rightMenu > li:first-child{
 }
 
 #clearResult{
-  margin-top: 15px;
-  width:40px;
-  /*padding: 5px;*/
-  height:100px;
+
+	width: 40px;
+	padding: 8px 8px 0 8px;
+
+	height: 100px;
+	font-size: 18px;
 }
 
 .innerText{
@@ -593,4 +598,20 @@ ul.rightMenu > li:first-child{
 	color:white;
 	cursor: default;
 	z-index: -995;
+}
+
+.top-part1 {
+	width: 200px;
+	padding-left: 20px;
+	display: inline-block;
+}
+
+.top-part2 {
+	width: 200px;
+	display: inline-block;
+}
+
+.top-part3 {
+	/*width: 200px;*/
+	display: inline-block;
 }
