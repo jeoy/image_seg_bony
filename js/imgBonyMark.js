@@ -98,6 +98,9 @@ $(function(){
 	currentResult.is_left = isleft
 
     outputToTA()
+	let markLogo = $('<img class="markLogo" src="images/Mapicon.png"/>')
+	markLogo.css({"top": 140 + boxCenter[1] - 10, "left": 200 + boxCenter[0] - 10})
+	$("body").prepend(markLogo)
     $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000) ;
   })
 
@@ -647,6 +650,7 @@ function enabledEvents(selector) {
 			record = '';
 			recordIn = '';
 			resultArr = [];
+			$(".markLogo").remove();
 			enabledEvents('#addNewDotsLeft');
 			enabledEvents('#addNewDotsRight');
 			resultArrWrap.push([]);
