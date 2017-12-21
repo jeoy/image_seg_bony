@@ -35,8 +35,8 @@ $(function(){
 
 	var nameArr,
 			resultArr = [];
+			resultArrWrap = [];
 	// $("#store").animate({scrollTop:$("#store")[0].scrollHeight - $("#store").height()},1000) ;
- 	// $("#preview").attr("src","images/logoGray.png");
 	var tool = 'brush'
   var mode = 'bony'
   var dotMove = false
@@ -71,7 +71,8 @@ $(function(){
     var msg = "这样做会清除所有结果,不可恢复\n\n请确认！";
     if (confirm(msg)==true){
       $('#resultArea').val('')
-      resultArr = []
+      resultArrWrap = []
+	  resultArr = []
       window.localStorage.SEGRESULT = ''
     } else{
       return false;
@@ -92,8 +93,10 @@ $(function(){
       alert('未知错误')
       return
     }
-	let boxCenter = genBoxCenter(currentResult.keypoints);
+	let boxCenter = genBoxCenter(currentResult.hand_pts);
 	currentResult.hand_box_center = boxCenter;
+	currentResult.is_left = isleft
+
     outputToTA()
     $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000) ;
   })
@@ -120,21 +123,20 @@ function enabledEvents(selector) {
   	firstDragger.push(true);
     }
     let obj = {}
-    obj.image = fileName
+    obj.image_name = fileName
 
     resultArr.push(obj)
 
     if (typeof resultArr[resultArr.length-1] === 'object'){
   	$(this).addClass('disabled')
-  	resultArr[resultArr.length-1].keypoints = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-  	resultArr[resultArr.length-1].isleft = isleft
+  	resultArr[resultArr.length-1].hand_pts = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
     } else {
   	alert('请先进行语义分割并保存')
   	return
     }
 
     for (var i = 0; i < dotNameArr.length; i++) {
-  	let newDot = $('<div class="markDot ' + dotNameArr[i] +'" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArrShort[i]+'</div></div>')
+  	let newDot = $('<div class="markDot ' + hand + '_'+dotNameArr[i] + '" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArrShort[i]+'</div></div>')
   	$("#dotBox").prepend(newDot)
     }
 
@@ -158,12 +160,12 @@ function enabledEvents(selector) {
     rightList = ['隐藏','可见','被遮挡']
 
     if (typeof resultArr[resultArr.length-1] === 'object'){
-      resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][2] = $(this).index()-1
+      resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][2] = $(this).index()-1
 
       if($(this).index()-1 === 0){   //选择隐藏
         currentDot.css('backgroundColor','#ff5e5e')
-        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][0] = 0
-        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][1] = 0
+        resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][0] = 0
+        resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][1] = 0
       } else if($(this).index()-1 === 2){  // 选择遮挡
         currentDot.css('backgroundColor','#eef31f')
       } else if($(this).index()-1 === 1){  //   可见
@@ -172,8 +174,7 @@ function enabledEvents(selector) {
     } else {
       alert('未知错误')
     }
-    // console.log( resultArr)
-    // $(this).parent().remove()
+
   })
 
   $('body').on("click",function(){
@@ -259,7 +260,7 @@ function enabledEvents(selector) {
       dotMove = true
       console.log('left click')
       if (firstDragger[dotNameArr.indexOf(GetDotName(currentDot))]){
-        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][2] = 1;
+        resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][2] = 1;
         currentDot.css('backgroundColor','#41ea2f')
         firstDragger[dotNameArr.indexOf(GetDotName(currentDot))] = false
       }
@@ -272,7 +273,7 @@ function enabledEvents(selector) {
 
       if (typeof resultArr[resultArr.length-1] === 'object'){
 
-        rightList[resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][2]]  +='✔️'
+        rightList[resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][2]]  +='✔️'
       } else {
         alert('未知错误')
       }
@@ -311,8 +312,8 @@ function enabledEvents(selector) {
       currentDot = $(this)
       dotMove = false
       if (typeof resultArr[resultArr.length-1] === 'object'){
-        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][0] = e.pageX - 200
-        resultArr[resultArr.length-1].keypoints[dotNameArr.indexOf(GetDotName(currentDot))][1] = e.pageY - 140
+        resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][0] = e.pageX - 200
+        resultArr[resultArr.length-1].hand_pts[dotNameArr.indexOf(GetDotName(currentDot))][1] = e.pageY - 140
       } else {
         alert('未知错误')
       }
@@ -336,47 +337,7 @@ function enabledEvents(selector) {
   $('#submit').click(function(){
 		var targetColor;
 		$('#mask2').show()
-		// window.setTimeout(function(){
-		// 	for (var i = 0; i < oriWidth; i++) {
-		// 		for (var j = 0; j < oriHeight; j++) {
-		// 			// console.log(i,j)
-		// 			targetColor = oGC.getImageData(i, j,1,1).data
-    //
-		// 			 if( targetColor[3] == 0 ){
-		// 				 var imgData=oGC.createImageData(1,1);
-		// 				 imgData.data[0]=0;
-		// 				 imgData.data[1]=0;
-		// 				 imgData.data[2]=0;
-		// 				 imgData.data[3]=255;
-		// 				 oGC.putImageData(imgData,i, j);
-		// 			 }
-		// 		}
-		// 	}
-		// 	var strDataURI = canvasDom[0].toDataURL();
-    //
-		// 	saveFile(strDataURI,fileName.split('.')[0]+'_Mask'+currMaskIndex+'.png')
-    //   currMaskIndex++
-		// 	// $("#nextImg").click();
-    //   oGC.clearRect(1,1,oriWidth-2,oriHeight-2);
-		// 	tool = 'brush'
-		// 	// $("#toolsBar option:checked").remove()
-		// 	$('#toolsBar option')[1].selected = false
-		// 	$('#toolsBar option')[0].selected = true
-		// },50)
 
-    // let obj = {}
-    // obj.segmentation = fileName.split('.')[0]+'_Mask'+currMaskIndex+'.png'
-    // obj.image = fileName
-    // obj.category = $(".category option:checked").val()
-    //
-    // resultArr.push(obj)
-
-
-
-    // $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000) ;
-
-
-    // $('#seg').attr('disabled',true)
 	})
 
 
@@ -623,7 +584,6 @@ function enabledEvents(selector) {
   		          }
   		        },100)
 
-  		     // console.log(oGC.getImageData(e.pageX-200,e.pageY-140,1,1));
   		      break;
   		    case 'brush':
   		      if(isStart){
@@ -684,9 +644,12 @@ function enabledEvents(selector) {
 
 	$("#fileList").on("click","option",function(){
 		console.log('onchange')
-		// $("option").click(function(){
 			record = '';
 			recordIn = '';
+			resultArr = [];
+			enabledEvents('#addNewDotsLeft');
+			enabledEvents('#addNewDotsRight');
+			resultArrWrap.push([]);
 			if($('#auto').prop('checked'))
 				{
 					start = true;
@@ -700,28 +663,10 @@ function enabledEvents(selector) {
 
 			fileName =  $(this).val();
 			// //初始化列表框
-			// recordIn = fileName + " " + 0
-			//
-			// if (canvasDate[fileName].length) {
-			// 	for ( i = 0; i< canvasDate[fileName].length; i++){
-			// 		record += canvasDate[fileName][i][6] + ' '
-			// 		record += (+canvasDate[fileName][i][0]).toFixed(0)  + ' '
-			// 		record += (+canvasDate[fileName][i][1]).toFixed(0)  + ' '
-			// 		record += (+canvasDate[fileName][i][4]).toFixed(0)  + ' '
-			// 		record += (+canvasDate[fileName][i][5]).toFixed(0)  + ' '
-			//
-			// 	}
-			// 	recordIn = fileName + " " + canvasDate[fileName].length + " "+ record;
-			// }
-			//
-			// $("#mark").val(recordIn);
-
 
 			count = 0;
 			$("#preview").attr("src","data/"+ fileName);
 
-
-		// });
 	});
 
 	$('#upload').change(function(){
@@ -740,9 +685,9 @@ function enabledEvents(selector) {
 	});
 
 	// fortest
-	$("#fileListInput").val('BG2.jpg\nBG1.jpg');
+	// $("#fileListInput").val('BG2.jpg\nBG1.jpg');
 
-	$("#genFileList").click();
+	// $("#genFileList").click();
 	// $('#addNewDots').click();
 
 	$("#file").on("change", function () {
@@ -755,41 +700,8 @@ function enabledEvents(selector) {
 					reader.onload = function() {
 						var regExName = /\w+\.\w+/gm
 						nameArr = this.result.match(regExName)
-					  // resultArr = this.result.split('\n')
 
-						// for (let item = 0; item < resultArr.length; item++){
-						// 	var regExG = /(\w+\.\w+)\s(\d)(.*)/g
-						// 	var matches = regExG.exec(resultArr[item])
-						// 	if (matches) {
-						// 		var regExRect = /[a-zA-Z]+(\s[\d]+){4}/g
-						// 		var matchRect
-						// 		while( (matchRect = regExRect.exec(matches[3])) !=null ){
-						// 			let scale = 1
-						// 			let cat = matchRect[0].split(' ')[0]
-						// 			let startX = matchRect[0].split(' ')[1]
-						// 			let startY = matchRect[0].split(' ')[2]
-						// 			let endX = matchRect[0].split(' ')[3]
-						// 			let endY = matchRect[0].split(' ')[4]
-						// 			let distanceX = endX - startX
-						// 			let distanceY = endY - startY
-						// 			if (categoryArr.indexOf(cat) === -1) {
-						// 				categoryArr.push(cat)
-						// 			}
-						// 			if(!canvasDate[nameArr[item]]) {
-						// 				canvasDate[nameArr[item]] = []
-						// 			}
-						// 			canvasDate[nameArr[item]].push([startX, startY, distanceX, distanceY, endX, endY, cat, scale])
-						// 		}
-						// 	}
-						// }
-						// if(categoryArr){
-						// 	for (var i = 0; i < categoryArr.length; i++) {
-						// 		var newCateDom = $('<option value="'+ categoryArr[i][0] +'">'+ categoryArr[i][0] +'</option>')
-						// 		newCateDom.css('background-color',categoryArr[i][1])
-						// 		$(".category").append(newCateDom);
-						// 		$(".category :last-child").attr('selected','selected').siblings().attr('selected',false)
-						// 	}
-						// }
+
 
 						$("#fileListInput").val(nameArr.join('\n'));
 
@@ -1064,25 +976,19 @@ function enabledEvents(selector) {
   }
   function outputToTA ( ) {
     var newCombineArr = []
-    var resultArrTemp = JSON.parse(JSON.stringify(resultArr))
-	// flat
-    // if(resultArrTemp.length){
-    //   for (var i = 0; i < resultArrTemp.length; i++) {
-    //     if(resultArrTemp[i].keypoints) {
-    //       for (var j = 0; j < resultArrTemp[i].keypoints.length; j++) {
-    //         newCombineArr = newCombineArr.concat(resultArrTemp[i].keypoints[j])
-    //       }
-    //       resultArrTemp[i].keypoints = newCombineArr
-    //       newCombineArr = []
-    //     }
-    //   }
-    // }
+	console.log('------', resultArr)
+	let resultArrWrapLen = resultArrWrap.length - 1 < 0 ? 0 : resultArrWrap.length - 1
+	let _resultArr = resultArr.slice(0);
+	resultArrWrap[resultArrWrapLen] = _resultArr;
+    var resultArrTemp = JSON.parse(JSON.stringify(resultArrWrap))
+
     window.localStorage.SEGRESULT = JSON.stringify(resultArrTemp)
     $('#resultDiv textarea').val(window.localStorage.SEGRESULT)
 
   }
 
   function average(arr) {
+	  if (!arr.length) return 0;
 	 var sum=0;
 	for(var i = 0; i < arr.length; i++){
 	    sum += arr[i];
@@ -1103,29 +1009,10 @@ function enabledEvents(selector) {
     $('#resultDiv textarea').val(window.localStorage.SEGRESULT)
     $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000)
 
-    resultArr = JSON.parse(window.localStorage.SEGRESULT)
+    resultArrWrap = JSON.parse(window.localStorage.SEGRESULT)
   }
 
 
 	var seedStack = []
-	// rect(oGC,1,1,50,50);
 
-  // $("#fileListInput").val('BG1.jpg\nBG2.jpg')
-  // $("#genFileList").click()
-  //
-  // $('.markDot').remove()
-  // $('#submit').addClass("disabled");
-  // $('#clearCanvas').addClass("disabled");
-  // $('.bonybt').removeClass("disabled");
-  // $('#toolsBar').attr("disabled",true);
-  // mode = 'bony'
-  //
-  // $('#previewMask').css('z-index',10)  //开启遮罩层, 避免选中问题
-  // $('#myCanvas').css('opacity',0)   //隐藏canvas 层
-  // $('.markDot').css('opacity',1)    //开启关节点
-  // $('.markDot').css('z-index',998)
-  // $('#bonySave').removeClass("disabled");
-  // $('#seg').attr('disabled',true)
-
-  // console.log(resultArr)
 });

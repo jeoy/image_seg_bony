@@ -456,122 +456,237 @@ ul.rightMenu > li:first-child{
   z-index: 1;
 	user-select: none;
 }
-.point1{
+.left_hand_point1{
   position: absolute;
   top:  300px;
   left: 298px;
 }
-.point2{
+.left_hand_point2{
   position: absolute;
   top:  290px;
   left: 270px;
 }
-.point3{
+.left_hand_point3{
   position: absolute;
   top:  280px;
   left: 250px;
 }
-.point4{
+.left_hand_point4{
   position: absolute;
   top:  260px;
   left: 230px;
 
 }
-.point5{
+.left_hand_point5{
   position: absolute;
   top:  250px;
   left: 210px;
 
 }
-.point6{
+.left_hand_point6{
   position: absolute;
   top:  240px;
   left: 280px;
 }
-.point7{
+.left_hand_point7{
   position: absolute;
   top:  210px;
   left: 270px;
 }
-.point8{
+.left_hand_point8{
   position: absolute;
   top:  190px;
   left: 263px;
 
 }
-.point9{
+.left_hand_point9{
   position: absolute;
   top:  168px;
   left: 259px;
 
 }
-.point10{
+.left_hand_point10{
   position: absolute;
   top:  230px;
   left: 295px;
 }
 
-.point11{
+.left_hand_point11{
   position: absolute;
   top:  200px;
   left: 295px;
 }
-.point12{
+.left_hand_point12{
   position: absolute;
   top:  180px;
   left: 295px;
 }
-.point13{
+.left_hand_point13{
   position: absolute;
   top:  150px;
   left: 295px;
 
 }
-.point14{
+.left_hand_point14{
   position: absolute;
   top:  230px;
   left: 320px;
 }
-.point15{
+.left_hand_point15{
   position: absolute;
   top:  210px;
   left: 330px;
 
 }
-.point16{
+.left_hand_point16{
   position: absolute;
   top:  190px;
   left: 340px;
 }
-.point17{
+.left_hand_point17{
   position: absolute;
   top:  170px;
   left: 348px;
 }
-.point18{
+.left_hand_point18{
   position: absolute;
   top:  245px;
   left: 335px;
 }
 
-.point19{
+.left_hand_point19{
   position: absolute;
   top:  230px;
   left: 350px;
 }
 
-.point20{
+.left_hand_point20{
   position: absolute;
   top:  220px;
   left: 360px;
 }
 
-.point21{
+.left_hand_point21{
   position: absolute;
   top:  210px;
   left: 375px;
 }
 
+.right_hand_point1{
+  position: absolute;
+  top:  300px;
+  left: 298px;
+}
+.right_hand_point2{
+  position: absolute;
+  top:  290px;
+  left: 320px;
+}
+.right_hand_point3{
+  position: absolute;
+  top:  280px;
+  left: 340px;
+}
+.right_hand_point4{
+  position: absolute;
+  top:  260px;
+  left: 360px;
+
+}
+.right_hand_point5{
+  position: absolute;
+  top:  250px;
+  left: 380px;
+
+}
+.right_hand_point6{
+  position: absolute;
+  top:  240px;
+  left: 310px;
+}
+.right_hand_point7{
+  position: absolute;
+  top:  210px;
+  left: 320px;
+}
+.right_hand_point8{
+  position: absolute;
+  top:  190px;
+  left: 327px;
+
+}
+.right_hand_point9{
+  position: absolute;
+  top:  168px;
+  left: 331px;
+
+}
+.right_hand_point10{
+  position: absolute;
+  top:  230px;
+  left: 295px;
+}
+
+.right_hand_point11{
+  position: absolute;
+  top:  200px;
+  left: 295px;
+}
+.right_hand_point12{
+  position: absolute;
+  top:  180px;
+  left: 295px;
+}
+.right_hand_point13{
+  position: absolute;
+  top:  150px;
+  left: 295px;
+
+}
+.right_hand_point14{
+  position: absolute;
+  top:  230px;
+  left: 270px;
+}
+.right_hand_point15{
+  position: absolute;
+  top:  210px;
+  left: 260px;
+
+}
+.right_hand_point16{
+  position: absolute;
+  top:  190px;
+  left: 250px;
+}
+.right_hand_point17{
+  position: absolute;
+  top:  170px;
+  left: 242px;
+}
+.right_hand_point18{
+  position: absolute;
+  top:  245px;
+  left: 255px;
+}
+
+.right_hand_point19{
+  position: absolute;
+  top:  230px;
+  left: 240px;
+}
+
+.right_hand_point20{
+  position: absolute;
+  top:  220px;
+  left: 230px;
+}
+
+.right_hand_point21{
+  position: absolute;
+  top:  210px;
+  left: 215px;
+}
 
 .bonybt{
   /*margin-top: 12px;*/
