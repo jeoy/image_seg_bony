@@ -78,6 +78,7 @@ button{
 }
 #file{
 	margin-top: 20px;
+	width: 150px;
 	/*background-color: #179f8d;*/
 }
 .content{
@@ -86,6 +87,7 @@ button{
 	position: relative;
 	height: 100%;
 	display: block;
+	user-select: none;
 }
 
 #category{
@@ -304,7 +306,11 @@ textarea::-webkit-input-placeholder {
 	background-color: green;
 }
 
-.dow{display:block;width:102px;height:42px; line-height:42px; text-align:center;
+.marginBottom{
+	margin-bottom: 20px;
+}
+
+.dow{display:none;width:102px;height:42px; line-height:42px; text-align:center;
 	  vertical-align: bottom;
 	  border-radius: 2px;
 	 font-family:FZYY; font-weight:bold; font-size:14px; background:#e9c814;color:#fff; text-decoration:none;   cursor:pointer;
@@ -327,7 +333,7 @@ textarea::-webkit-input-placeholder {
   -o-transition:background-color 0.7s;  /* Opera */}
 
 
-.dowLit2{display:inline-block;width:102px;height:42px; line-height:42px; text-align:center;
+.dowLit2{display:inline-block;width:102px;height:25px; line-height:42px; text-align:center;
 	  vertical-align: bottom;
 		user-select: none;
 	  margin-left: 0px;
@@ -450,104 +456,127 @@ ul.rightMenu > li:first-child{
   z-index: 1;
 	user-select: none;
 }
-.nose{
+.point1{
   position: absolute;
-  top:  240px;
+  top:  300px;
   left: 298px;
 }
-.right_eye{
+.point2{
   position: absolute;
-  top:  230px;
-  left: 260px;
+  top:  290px;
+  left: 270px;
 }
-.left_eye{
+.point3{
   position: absolute;
-  left: 335px;
-  top:  230px;
-}
-.right_ear{
-  position: absolute;
-  top:  180px;
-  left: 221px;
-
-}
-.left_ear{
-  position: absolute;
-  top:  180px;
-  left: 376px;
-
-}
-.right_shoulder{
-  position: absolute;
-  top: 287px;
+  top:  280px;
   left: 250px;
 }
-.left_shoulder{
+.point4{
   position: absolute;
-  top: 287px;
+  top:  260px;
+  left: 230px;
+
+}
+.point5{
+  position: absolute;
+  top:  250px;
+  left: 210px;
+
+}
+.point6{
+  position: absolute;
+  top:  240px;
+  left: 280px;
+}
+.point7{
+  position: absolute;
+  top:  210px;
+  left: 270px;
+}
+.point8{
+  position: absolute;
+  top:  190px;
+  left: 263px;
+
+}
+.point9{
+  position: absolute;
+  top:  168px;
+  left: 259px;
+
+}
+.point10{
+  position: absolute;
+  top:  230px;
+  left: 295px;
+}
+
+.point11{
+  position: absolute;
+  top:  200px;
+  left: 295px;
+}
+.point12{
+  position: absolute;
+  top:  180px;
+  left: 295px;
+}
+.point13{
+  position: absolute;
+  top:  150px;
+  left: 295px;
+
+}
+.point14{
+  position: absolute;
+  top:  230px;
+  left: 320px;
+}
+.point15{
+  position: absolute;
+  top:  210px;
+  left: 330px;
+
+}
+.point16{
+  position: absolute;
+  top:  190px;
+  left: 340px;
+}
+.point17{
+  position: absolute;
+  top:  170px;
   left: 348px;
 }
-.right_elbow{
+.point18{
   position: absolute;
-  left: 237px;
-  top:  313px;
-
+  top:  245px;
+  left: 335px;
 }
-.left_elbow{
+
+.point19{
   position: absolute;
-  top:  313px;
+  top:  230px;
+  left: 350px;
+}
+
+.point20{
+  position: absolute;
+  top:  220px;
   left: 360px;
+}
 
-}
-.right_wrist{
+.point21{
   position: absolute;
-  top:  335px;
-  left: 232px;
+  top:  210px;
+  left: 375px;
+}
 
-}
-.left_wrist{
-  position: absolute;
-  top:  335px;
-  left: 365px;
-
-}
-.right_hip{
-  position: absolute;
-  top:  354px;
-  left: 275px;
-
-}
-.left_hip{
-  position: absolute;
-  top:  354px;
-  left: 326px;
-
-}
-.right_knee{
-  position: absolute;
-  top:  378px;
-    left: 260px;
-}
-.left_knee{
-  position: absolute;
-  top:  378px;
-  left: 335px;
-
-}
-.right_ankle{
-  position: absolute;
-  top:  394px;
-  left: 260px;
-}
-.left_ankle{
-  position: absolute;
-  top:  394px;
-  left: 335px;
-}
 
 .bonybt{
-  margin-top: 12px;
-  margin-bottom: 10px;
+  /*margin-top: 12px;*/
+  /*margin-bottom: 10px;*/
+  line-height: 23px;
 }
 .modeChoice {
   position: absolute;
@@ -595,18 +624,20 @@ ul.rightMenu > li:first-child{
 	user-select:none;
 	margin-top: -15px;
 	font-size: 12px;
-	color:white;
+	color:black;
 	cursor: default;
 	z-index: -995;
 }
 
 .top-part1 {
-	width: 200px;
+	width: 150px;
+	user-select: none;
 	padding-left: 20px;
 	display: inline-block;
 }
 
 .top-part2 {
+	user-select: none;
 	width: 200px;
 	display: inline-block;
 }

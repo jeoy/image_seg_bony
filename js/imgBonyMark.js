@@ -43,8 +43,15 @@ $(function(){
 
   var rightList = ['隐藏','可见','被遮挡']
   var currMaskIndex = 0;
-  var dotNameArr = ['nose', 'left_eye', 'right_eye', 'left_ear', 'right_ear', 'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_hip', 'right_hip', 'left_knee', 'right_knee', 'left_ankle', 'right_ankle']
-  var dotNameArrShort = ['nose', 'L_eye', 'R_eye', 'L_ear', 'R_ear', 'L_shoulder', 'R_shoulder', 'L_elbow', 'R_elbow', 'L_wrist', 'R_wrist', 'L_hip', 'R_hip', 'L_knee', 'R_knee', 'L_ankle', 'R_ankle']
+  var dotNameArr = ['point1', 'point2', 'point3', 'point4', 'point5', 'point6', 'point7', 'point8', 'point9', 'point10', 'point11', 'point12', 'point13', 'point14', 'point15', 'point16', 'point17', 'point18', 'point19', 'point20', 'point21']
+  let dotNameArrLeft = [];
+  let dotNameArrRight = [];
+  dotNameArr.forEach(item => {
+	  dotNameArrLeft.push(item+'left');
+	  dotNameArrRight.push(item+'right');
+  })
+  console.log(dotNameArrLeft);
+  var dotNameArrShort = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
 
   $(':input').labelauty();
   $('#submit').removeClass("disabled");
@@ -73,53 +80,77 @@ $(function(){
   })
   $('#bonySave').click(function(){
     $('#seg').attr('disabled',false)
+	let currentResult = resultArr[resultArr.length-1];
+    if (typeof currentResult === 'object'){
+		console.log(currentResult);
+		enabledEvents('#addNewDotsLeft');
+		enabledEvents('#addNewDotsRight');
+		$("#dotBox").empty();
+		$(".bonyBear").remove();
 
-    if (typeof resultArr[resultArr.length-1] === 'object'){
-      resultArr[resultArr.length-1].num_keypoints = 17
-      for (var i = 0; i < resultArr[resultArr.length-1].keypoints.length; i++) {
-        if(resultArr[resultArr.length-1].keypoints[i][2] == 0 ){
-          resultArr[resultArr.length-1].num_keypoints--
-        }
-      }
     } else {
       alert('未知错误')
       return
     }
+	let boxCenter = genBoxCenter(currentResult.keypoints);
+	currentResult.hand_box_center = boxCenter;
     outputToTA()
     $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000) ;
   })
 
-  $('#addNewDots').click(function(){
-    firstDragger = [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]
+var isleft = 1;
+
+function disabledEvents(selector) {
+	$(selector).css("pointer-events","none");
+	$(selector).css("background","grey");
+
+}
+
+function enabledEvents(selector) {
+	$(selector).css("pointer-events","");
+	$(selector).css("background","#fbd91f");
+
+}
+  function addNewDots(hand){
+	  disabledEvents('#addNewDotsLeft');
+	  disabledEvents('#addNewDotsRight');
+	  isleft = hand === 'left_hand' ? 1 : 0;
+  	firstDragger = [];
+    for (var i = 0; i < 21; i++) {
+  	firstDragger.push(true);
+    }
     let obj = {}
     obj.image = fileName
 
     resultArr.push(obj)
 
     if (typeof resultArr[resultArr.length-1] === 'object'){
-      $(this).addClass('disabled')
-      resultArr[resultArr.length-1].keypoints = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-      resultArr[resultArr.length-1].num_keypoints = 17
+  	$(this).addClass('disabled')
+  	resultArr[resultArr.length-1].keypoints = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+  	resultArr[resultArr.length-1].isleft = isleft
     } else {
-      alert('请先进行语义分割并保存')
-      return
+  	alert('请先进行语义分割并保存')
+  	return
     }
 
     for (var i = 0; i < dotNameArr.length; i++) {
-      let newDot = $('<div class="markDot ' + dotNameArr[i] +'" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArrShort[i]+'</div></div>')
-      $("#dotBox").prepend(newDot)
+  	let newDot = $('<div class="markDot ' + dotNameArr[i] +'" name="mask'+currMaskIndex +'_' + dotNameArr[i] +'" ><div class="innerText">'+dotNameArrShort[i]+'</div></div>')
+  	$("#dotBox").prepend(newDot)
     }
 
 
-    let bonyBear = $('<img class="bonyBear" src="images/bonyBear.png"/>')
+    let bonyBear = $('<img class="bonyBear" src="images/'+hand+'.png"/>')
 
     $("body").prepend(bonyBear)
     if(showBear) {
-      $('.bonyBear').css('z-index',1)
+  	$('.bonyBear').css('z-index',1)
     } else {
-      $('.bonyBear').css('z-index',-99)
+  	$('.bonyBear').css('z-index',-99)
     }
-  })
+  }
+
+  $('#addNewDotsLeft').click(() => addNewDots('left_hand'));
+  $('#addNewDotsRight').click(() => addNewDots('right_hand'));
 
   $('body').on("click",".rightMenu li",function(e){
     if($(this).index()==0) return
@@ -208,7 +239,11 @@ $(function(){
     isInnerText = true
     console.log('inner click')
   })
-  var firstDragger = [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]
+
+  var firstDragger = []
+  for (var i = 0; i < 21; i++) {
+  	firstDragger.push(true);
+  }
   $('body').on("mousedown",'.markDot',function(e){
     // $(this).css("left",e.pageX-5)
     // $(this).css("top",e.pageY-5)
@@ -336,7 +371,7 @@ $(function(){
     //
     // resultArr.push(obj)
 
-    // outputToTA( )
+
 
     // $("#resultArea").animate({scrollTop:$("#resultArea")[0].scrollHeight - $("#resultArea").height()},1000) ;
 
@@ -487,7 +522,7 @@ $(function(){
     $('.markDot').css('opacity',0)
     $('.markDot').css('z-index',-1)
 
-    $('#addNewDots').removeClass("disabled");
+    $('#addNewDotsLeft').removeClass("disabled");
     $('.bonyBear').remove()
     $('#bony').attr('disabled',true)
 
@@ -704,10 +739,11 @@ $(function(){
 		$("#preview").attr("src","data/"+ fileName);
 	});
 
+	// fortest
+	$("#fileListInput").val('BG2.jpg\nBG1.jpg');
 
-	// $("#fileListInput").val('desktop.jpg\nBG1.jpg');
-
-	// $("#genFileList").click();
+	$("#genFileList").click();
+	// $('#addNewDots').click();
 
 	$("#file").on("change", function () {
 		// console.log(files)
@@ -1029,21 +1065,38 @@ $(function(){
   function outputToTA ( ) {
     var newCombineArr = []
     var resultArrTemp = JSON.parse(JSON.stringify(resultArr))
-
-    if(resultArrTemp.length){
-      for (var i = 0; i < resultArrTemp.length; i++) {
-        if(resultArrTemp[i].keypoints) {
-          for (var j = 0; j < resultArrTemp[i].keypoints.length; j++) {
-            newCombineArr = newCombineArr.concat(resultArrTemp[i].keypoints[j])
-          }
-          resultArrTemp[i].keypoints = newCombineArr
-          newCombineArr = []
-        }
-      }
-    }
+	// flat
+    // if(resultArrTemp.length){
+    //   for (var i = 0; i < resultArrTemp.length; i++) {
+    //     if(resultArrTemp[i].keypoints) {
+    //       for (var j = 0; j < resultArrTemp[i].keypoints.length; j++) {
+    //         newCombineArr = newCombineArr.concat(resultArrTemp[i].keypoints[j])
+    //       }
+    //       resultArrTemp[i].keypoints = newCombineArr
+    //       newCombineArr = []
+    //     }
+    //   }
+    // }
     window.localStorage.SEGRESULT = JSON.stringify(resultArrTemp)
     $('#resultDiv textarea').val(window.localStorage.SEGRESULT)
 
+  }
+
+  function average(arr) {
+	 var sum=0;
+	for(var i = 0; i < arr.length; i++){
+	    sum += arr[i];
+	}
+	return mean = parseFloat((sum / arr.length).toFixed(4));
+  }
+  function genBoxCenter(poinArr) {
+	  let xArr = [];
+	  let yArr = [];
+	  poinArr.forEach(point => {
+		  point[0] && xArr.push(point[0]);
+		  point[1] && yArr.push(point[1]);
+	  });
+	  return [average(xArr), average(yArr)];
   }
 
   if (window.localStorage.SEGRESULT) {

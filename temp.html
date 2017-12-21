@@ -17,13 +17,15 @@
 			<img draggable="false"src="images/logo.png"></img>
 	   </div>
      <p>图片文件列表</p>
-     <a  id ="genFileList"  class="dow" disabled = "disabled" > 生成文件列表</a>
-     <textarea id = "fileListInput" placeholder="将文件名字列表复制到这里"></textarea>
+     <a  id ="genFileList"  class="dow" disabled = false > 生成文件列表</a>
+     <textarea id = "fileListInput" placeholder="请在下方先选择文件"></textarea>
      <div id = "fileList"> </div>
 
 
      <a id ="preImg" disabled= "false" class="dowLit" > 上一张</a>
      <a id ="nextImg" disabled="disabled"  class="dowLit"> 下一张</a>
+
+
 
 		 <input type="file" id="file" />
      <div class="checkboxThree">
@@ -626,7 +628,7 @@ $(function(){
 	})
 
 	function saveFile(data, fileName) {
-	    var saveLink = document.createElement( 'a');
+	    var saveLink = document.createElement('a');
 	    saveLink.href = data;
 	    saveLink.download = fileName;
 	    saveLink.click();

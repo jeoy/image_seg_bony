@@ -17,15 +17,15 @@
 			<img draggable="false"src="images/logo.png"></img>
 	   </div>
      <p>图片文件列表</p>
-     <a  id ="genFileList"  class="dow" disabled = "disabled" > 生成文件列表</a>
-     <textarea id = "fileListInput" placeholder="将文件名字列表复制到这里"></textarea>
+     <input type="file" class="marginBottom" id="file" />
+     <a id ="genFileList" class="dow" disabled > 生成文件列表</a>
+     <textarea id = "fileListInput" placeholder="在下方选择文件"></textarea>
      <div id = "fileList"> </div>
 
 
      <a id ="preImg" disabled= "false" class="dowLit" > 上一张</a>
      <a id ="nextImg" disabled="disabled"  class="dowLit"> 下一张</a>
 
-		 <input type="file" id="file" />
   </div>
 
   <div id='mask' class='mask'><p>努力涂色中....</p></div>
@@ -40,7 +40,7 @@
   	<div class="content">
       <div class="top-part1">
         <div class="checkboxThree">
-          <input type="checkbox" value="1" id="showBear" checked="checked" data-labelauty="显示轻松熊" name="">
+          <input type="checkbox" value="1" id="showBear" checked="checked" data-labelauty="显示示意图" name="">
           <!-- <label for="auto"></label> -->
         </div>
         <div class="checkboxThree">
@@ -54,9 +54,10 @@
 
       <div id= 'bonyBox' class="top-part2" >
 
-        <a  class="dowLit2 bonybt" id="addNewDots"> 添加节点</a>
+        <a  class="dowLit2 bonybt" id="addNewDotsLeft"> 添加左手</a>
+        <a  class="dowLit2 bonybt" id="addNewDotsRight"> 添加右手</a>
         <!-- <a  class="dowLit bonybt"  id="removeNewDots"> 移除一组节点</a><br> -->
-        <a id ="bonySave" class="dowLit2"  > 保存节点</a>
+        <a id ="bonySave" class="dowLit2 bonybt"  > 保存节点</a>
 
       </div>
       <div id="resultDiv"  class="top-part3" >
